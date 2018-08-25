@@ -14,7 +14,7 @@
 # define LIBFT_H
 # include <string.h>
 
-int			t_nblen(int nb);
+int			ft_nblen(int nb);
 size_t			ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 int				ft_isalpha(int c);
