@@ -12,8 +12,8 @@
 
 NAME = libft.a
 SRCS = ft_memccpy.c	ft_putnbr.c	ft_strequ.c	ft_strnequ.c\
-	ft_memchr.c	ft_putnbr_fd.c	ft_striter.c ft_strnew.c\
-	ft_atoi.c ft_memcmp.c ft_putstr.c ft_striteri.c ft_strnstr.c\
+	ft_str_countword.c ft_memchr.c	ft_putnbr_fd.c	ft_striter.c ft_strnew.c\
+	ft_strtrim_char.c ft_atoi.c ft_memcmp.c ft_putstr.c ft_striteri.c ft_strnstr.c\
 	ft_bzero.c	ft_memcpy.c	ft_putstr_fd.c	ft_strjoin.c ft_strrchr.c\
 	ft_isalnum.c ft_memdel.c ft_strcat.c ft_strlcat.c ft_strsplit.c\
 	ft_isalpha.c ft_memmove.c ft_strchr.c ft_strlen.c ft_strstr.c\

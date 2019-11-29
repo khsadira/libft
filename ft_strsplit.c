@@ -1,82 +1,38 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 10:20:32 by khsadira          #+#    #+#             */
-/*   Updated: 2017/11/23 11:03:26 by khsadira         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
 
-static const char	*next_word(const char *str, char c, int i)
+static int	next_word(char *s, char c, int i)
 {
-	if (i == 1)
-		while (*str && *str == c)
-			str++;
-	else
-		while (*str && *str != c)
-			str++;
-	return (str);
-}
-
-static int			nb_words(const char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (*str)
+	while (s[i])
 	{
-		str = next_word(str, c, 1);
-		if (*str)
-		{
-			i++;
-			str = next_word(str, c, 0);
-		}
+		if (s[i] == c)
+			return i;
+		i++;
 	}
 	return (i);
 }
 
-static char			**cleantable(char **tab, int i)
+char		**ft_strsplit(char const *s, char c)
 {
-	int	a;
+	char	**ret;
+	int		nb_word;
+	int		i;
+	int		j;
 
-	a = 0;
-	while (a < i)
-		free(tab[a]);
-	free(tab);
-	return (NULL);
-}
-
-char				**ft_strsplit(char const *str, char c)
-{
-	char		**tab;
-	const char	*word;
-	int			i;
-
+	if (!s || !(s = (char const *)ft_strtrim_char((char *)s, c)))
+		return NULL;
+	nb_word = ft_str_countword((char *)s, c);
+	if (!(ret = (char **)malloc(sizeof(char *) * nb_word + 1)))
+		return (NULL);
+	ret[nb_word] = NULL;
 	i = 0;
-	if (str == NULL)
-		return (NULL);
-	tab = (char **)malloc(sizeof(char *) * (nb_words(str, c) + 1));
-	if (tab == NULL)
-		return (NULL);
-	while (*str)
+	while (i <= nb_word)
 	{
-		str = next_word(str, c, 1);
-		if (*str)
-		{
-			word = next_word(str, c, 0);
-			tab[i] = ft_strsub(str, 0, word - str);
-			if (tab[i] == NULL)
-				return (cleantable(tab, i));
-			i++;
-			str = word;
-		}
+		j = next_word((char *)s, c, i);
+		if (!(ret[i] = ft_strsub(s, i, j-i)))
+			ret[i] = ft_strdup("");
+		i++;
 	}
-	tab[i] = 0;
-	return (tab);
+	return (ret);
 }

@@ -17,6 +17,8 @@
 int			ft_nblen(int nb);
 size_t			ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
+int				ft_str_countword(const char *s, char c);
+char			*ft_strtrim_char(const char *s, char c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
